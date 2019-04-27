@@ -1,0 +1,104 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row">
+  <div class="col s12" id="info-tkb" data-idtkb="{{idtkb}}">
+    <form action="" method="POST" class="col s12 card-panel form-input" >
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="giangvien" id="select-gv-tkb">
+            <option value="">Tất cả giảng viên</option>
+            {% for teacher in listTeacherNew %}
+            <option value={{teacher.id}} {% if giangvien.id == teacher.id %}selected{% endif %}>{{teacher.name}}
+            </option>
+            {% endfor %}
+          </select>
+          <label>Giảng viên</label>
+        </div>
+      </div>
+    </form>
+    {% if giangvien %}
+    <h5 class="center-align">Lịch giảng dạy của giảng viên: <span class="light-blue-text">{{ giangvien.name }}</span>
+    </h5>
+    {% endif %}
+    <table class="responsive-table striped">
+      <thead class="table-head ">
+        <tr>
+          <th></th>
+          <th>Tiết 1</th>
+          <th>Tiết 2</th>
+          <th>Tiết 3</th>
+          <th>Tiết 4</th>
+          <th>Tiết 5</th>
+          <th>Tiết 6</th>
+          <th>Tiết 7</th>
+          <th>Tiết 8</th>
+          <th>Tiết 9</th>
+          <th>Tiết 10</th>
+        </tr>
+      </thead>
+      <tbody class="lop-table-body">
+        <tr>
+          <td>Thứ 2</td>
+          {% for thuHai in danhSachTkb.thuHai %}
+          <td>
+            {% for monHocTheoTiet in thuHai %}
+            <div>{{monHocTheoTiet.thongtinMonHoc.name}} </br>
+              K{{monHocTheoTiet.thongtinLop.khoahoc}}{{monHocTheoTiet.thongtinLop.name}}</div>
+            {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Thứ 3</td>
+          {% for thuBa in danhSachTkb.thuBa %}
+          <td>
+            {% for monHocTheoTiet in thuBa %}
+
+            <div>{{monHocTheoTiet.thongtinMonHoc.name}} </br>
+              K{{monHocTheoTiet.thongtinLop.khoahoc}}{{monHocTheoTiet.thongtinLop.name}}</div> {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Thứ 4</td>
+          {% for thuTu in danhSachTkb.thuTu %}
+          <td>
+            {% for monHocTheoTiet in thuTu %}
+
+            <div>{{monHocTheoTiet.thongtinMonHoc.name}} </br>
+              K{{monHocTheoTiet.thongtinLop.khoahoc}}{{monHocTheoTiet.thongtinLop.name}}</div> {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Thứ 5</td>
+          {% for thuNam in danhSachTkb.thuNam %}
+          <td>
+            {% for monHocTheoTiet in thuNam %}
+            <div>{{monHocTheoTiet.thongtinMonHoc.name}} </br>
+              K{{monHocTheoTiet.thongtinLop.khoahoc}}{{monHocTheoTiet.thongtinLop.name}}</div>
+            {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Thứ 6</td>
+          {% for thuSau in danhSachTkb.thuSau %}
+          <td>
+            {% for monHocTheoTiet in thuSau %}
+            <div>{{monHocTheoTiet.thongtinMonHoc.name}} </br>
+              K{{monHocTheoTiet.thongtinLop.khoahoc}}{{monHocTheoTiet.thongtinLop.name}}</div>
+            {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/js/tkb.js"></script>
+{% endblock %}

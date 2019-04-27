@@ -1,0 +1,27 @@
+{% extends "layout/layout.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col m8 offset-m2 s12">
+    <div class="row gv-container">
+      <form action="/edit/giangvien/{{dataEdit.id}}" method="POST" class="col s12 card-panel form-input">
+        <h5 class="form-title center-align" >Thông tin giảng viên</h5>
+        <div class="row">
+          <div class="input-field col m6 s12">
+            <input id="first_name" type="text" class="validate" name="name" value="{{dataEdit.name}}">
+            <label for="first_name">Họ Và Tên</label>
+          </div>
+          <div class="input-field col m6 s12">
+            <input id="note" type="text" class="validate" name="note" value="{{dataEdit.note}}">
+            <label for="note">Ghi chú</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light center btn-submit light-blue" type="submit">Cập nhật thông tin giảng
+          viên
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row mh-container">
+    <form action="/phanconggiangday2" method="POST" class="col s12 card-panel form-input" id="form-add-phanconggiangday"
+      data-number="{{numberOfSuject}}">
+      <h5 class="form-title">Thông tin môn học</h5>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <select name="idMonHoc">
+            <option value="" disabled selected>Chọn môn học</option>
+            {% for subject in listSubjectGiangDay %}
+            <option value={{subject.id}}>{{subject.name}}</option>
+            {% endfor %}
+          </select>
+          <label>Môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="giangvien">
+            <option value="" disabled selected>Chọn giảng viên</option>
+            {% for teacher in listTeacherGiangDay %}
+            <option value={{teacher.id}}>{{teacher.name}}</option>
+            {% endfor %}
+          </select>
+          <label>Giảng viên</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="lop" id="select-lop">
+            <option value="" disabled selected>Chọn lớp</option>
+            {% for lop in listClassGiangDay %}
+            <option value={{lop.id}}>{{lop.name}} - K{{lop.khoahoc}}</option>
+            {% endfor %}
+          </select>
+          <label>Lớp</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light center btn-submit light-blue " type="submit">Thêm Môn Học
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12">
+        <table class="striped">
+          <thead class="table-head ">
+            <tr>
+              <th>STT</th>
+              <th>Môn học</th>
+              <th>Số tín chỉ</th>
+              <th>Giảng viên</th>
+              <th>Lớp</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody class="pcgd-table-body">
+            {% for subject in listPhanCongGiangDay %}
+            <tr id="pcgd-{{subject.id}}">
+              <td>{{ loop.index }}</td>
+              <td>{{ subject.chiTietMonHoc.name }}</td>
+              <td>{{ subject.chiTietMonHoc.sotinchi }}</td>
+              <td>{{ subject.chiTietGv.name }}</td>
+              <td>K{{ subject.chiTietLopHoc.khoahoc }} - {{ subject.chiTietLopHoc.name }}</td>
+              <td>
+                <a href="/edit/phanconggiangday2/{{ subject.id }}" class="waves-effect waves-light btn btn-small">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a href="/phanconggiangday2/{{ subject.id }}"
+                  class="waves-effect waves-light btn btn-small red lighten-2 btn-delete-pcgd">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

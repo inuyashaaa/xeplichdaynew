@@ -1,0 +1,46 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col m8 offset-m2 s12">
+    <form action="/edit/phanconggiangday/{{dataEdit.id}}" method="POST" class="col s12 card-panel form-input">
+      <h5 class="form-title">Thông tin môn học</h5>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <select name="idmonhoc" id="select-gv">
+            <option value="" disabled>Chọn môn học</option>
+            {% for subject in listSubject %}
+            <option value="{{subject.id}}" {% if dataEdit.idmonhoc == subject.id %} selected {% endif %}>{{subject.name}}</option>
+            {% endfor %}
+          </select>
+          <label>Môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="idgiangvien" id="select-gv">
+            <option value="" disabled>Chọn giảng viên</option>
+            {% for teacher in listTeacher %}
+            <option value="{{teacher.id}}" {% if dataEdit.idgiangvien == teacher.id %} selected {% endif %}>{{teacher.name}}</option>
+            {% endfor %}
+          </select>
+          <label>Giảng viên</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="idlop" id="select-lop">
+            <option value="" disabled>Chọn lớp</option>
+            {% for lop in listClass %}
+            <option value="{{lop.id}}" {% if dataEdit.idlop == lop.id %} selected {% endif %}>{{lop.name}} - K{{lop.khoahoc}}</option>
+            {% endfor %}
+          </select>
+          <label>Lớp</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light center btn-submit light-blue " type="submit">Cập nhật thông tin Môn Học
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+  <script src="/js/monhoc.js"></script>
+{% endblock %}

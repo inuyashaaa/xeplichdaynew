@@ -1,0 +1,73 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row lop-container">
+  <form action="/lop" method="POST" class="col s12 card-panel form-input" id="form-add-lop"
+    data-number="{{numberOfClass}}">
+    <h5 class="form-title">Thông tin Lớp</h5>
+    <div class="row">
+      <div class="input-field col m6 s12">
+        <input id="first_name" type="text" class="validate" name="name">
+        <label for="first_name">Tên lớp</label>
+      </div>
+      <div class="input-field col m6 s12">
+        <input id="note" type="text" class="validate" name="khoahoc">
+        <label for="note">Khoá học</label>
+      </div>
+      <div class="input-field col m6 s12">
+        <select name="buoihoc">
+          <option value="" disabled selected>Chọn buổi học</option>
+          <option value="s">Buổi sáng</option>
+          <option value="c">Buổi chiều</option>
+        </select>
+        <label>Buổi học</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light center btn-submit light-blue" type="submit">Thêm Lớp
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s12">
+      <table class="striped">
+        <thead class="table-head ">
+          <tr>
+            <th>STT</th>
+            <th>Lớp</th>
+            <th>Mã lớp</th>
+            <th>Khoá học</th>
+            <th>Buổi học</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody class="lop-table-body">
+          {% for lop in listClass %}
+          <tr id="lop-{{lop.id}}">
+            <td>{{ loop.index }}</td>
+            <td>{{ lop.name }}</td>
+            <td>{{ lop.id }}</td>
+            <td>{{ lop.khoahoc }}</td>
+            <td>
+              {% if lop.buoihoc == 's' %}
+              Buổi sáng
+              {% else %}
+              Buổi chiều
+              {% endif %}
+            </td>
+            <td>
+              <a href="/edit/lop/{{ lop.id }}" class="waves-effect waves-light btn btn-small">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="/lop/{{ lop.id }}" class="waves-effect waves-light btn btn-small red lighten-2 btn-delete-lop">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

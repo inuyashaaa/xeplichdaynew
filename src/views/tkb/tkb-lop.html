@@ -1,0 +1,146 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row">
+  <div class="col s12" id="info-tkb" data-idtkb="{{idtkb}}">
+    <form action="" method="POST" class="col s12 card-panel form-input">
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="lop" id="select-gv-tkb">
+            {% for class in listClassNew %}
+            <option value={{class.id}} {% if lop.id == class.id %}selected{% endif %}>{{ class.khoahoc }} -
+              {{class.name}}
+            </option>
+            {% endfor %}
+          </select>
+          <label>Lớp</label>
+        </div>
+      </div>
+    </form>
+    {% if lop %}
+    <h5 class="center-align">Lịch học của lớp: <span class="light-blue-text">{{ lop.khoahoc }} - {{ lop.name }}</span>
+    </h5>
+    {% endif %}
+    <table class="responsive-table striped">
+      <thead class="table-head">
+        <tr>
+          <td rowspan="3">STT</td>
+          <td rowspan="3">Tên Học Phần</td>
+          <td rowspan="3">Mã Môn</td>
+          <td rowspan="3">Số Tín Chỉ</td>
+          <th colspan="2" scope="colgroup">Thứ Hai</th>
+          <th colspan="2" scope="colgroup">Thứ Ba</th>
+          <th colspan="2" scope="colgroup">Thứ Tư</th>
+          <th colspan="2" scope="colgroup">Thứ Năm</th>
+          <th colspan="2" scope="colgroup">Thứ Sáu</th>
+          <td rowspan="3">Tên Giảng Viên</td>
+        </tr>
+        <tr>
+          <th scope="col">Sáng</th>
+          <th scope="col">Chiều</th>
+          <th scope="col">Sáng</th>
+          <th scope="col">Chiều</th>
+          <th scope="col">Sáng</th>
+          <th scope="col">Chiều</th>
+          <th scope="col">Sáng</th>
+          <th scope="col">Chiều</th>
+          <th scope="col">Sáng</th>
+          <th scope="col">Chiều</th>
+        </tr>
+        <tr>
+          <th scope="col">1->5</th>
+          <th scope="col">6->10</th>
+          <th scope="col">1->5</th>
+          <th scope="col">6->10</th>
+          <th scope="col">1->5</th>
+          <th scope="col">6->10</th>
+          <th scope="col">1->5</th>
+          <th scope="col">6->10</th>
+          <th scope="col">1->5</th>
+          <th scope="col">6->10</th>
+        </tr>
+      </thead>
+      <tbody class="lop-table-body">
+        {% for tkb  in danhSachTkb %}
+        <tr>
+          <td scope="col">{{tkb.stt}}</td>
+          <td scope="col">{{tkb.thongtinMonHoc.name}}</td>
+          <td scope="col">{{tkb.thongtinMonHoc.mamonhoc}}</td>
+          <td scope="col">{{tkb.thongtinMonHoc.sotinchi}}</td>
+
+          {% if tkb.thuHocHienTai == 2 %}
+            {% if tkb.thongtinLop.buoihoc == 's' %}
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            <td scope="col"></td>
+            {% else %}
+            <td scope="col"></td>
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            {% endif %}
+          {% else %}
+            <td scope="col"></td>
+            <td scope="col"></td>
+          {% endif %}
+
+          {% if tkb.thuHocHienTai == 3 %}
+            {% if tkb.thongtinLop.buoihoc == 's' %}
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            <td scope="col"></td>
+            {% else %}
+            <td scope="col"></td>
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            {% endif %}
+          {% else %}
+            <td scope="col"></td>
+            <td scope="col"></td>
+          {% endif %}
+          {% if tkb.thuHocHienTai == 4 %}
+            {% if tkb.thongtinLop.buoihoc == 's' %}
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            <td scope="col"></td>
+            {% else %}
+            <td scope="col"></td>
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            {% endif %}
+          {% else %}
+            <td scope="col"></td>
+            <td scope="col"></td>
+          {% endif %}
+
+          {% if tkb.thuHocHienTai == 5 %}
+            {% if tkb.thongtinLop.buoihoc == 's' %}
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            <td scope="col"></td>
+            {% else %}
+            <td scope="col"></td>
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            {% endif %}
+          {% else %}
+            <td scope="col"></td>
+            <td scope="col"></td>
+          {% endif %}
+
+          {% if tkb.thuHocHienTai == 6 %}
+            {% if tkb.thongtinLop.buoihoc == 's' %}
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            <td scope="col"></td>
+            {% else %}
+            <td scope="col"></td>
+            <td scope="col">{{tkb.tietHocHienTai}}</td>
+            {% endif %}
+          {% else %}
+            <td scope="col"></td>
+            <td scope="col"></td>
+          {% endif %}
+
+          <td scope="col">{{tkb.thongtinGiangVien.name}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/js/tkb-lop.js"></script>
+{% endblock %}

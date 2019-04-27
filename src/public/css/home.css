@@ -1,0 +1,37 @@
+.nav-head {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.content-container {
+  margin-bottom: 0 !important;
+}
+.nav-left {
+  height: 800px;
+  border-right: 1px solid rgba(0,0,0,0.14);
+  border-bottom: 1px solid rgba(0,0,0,0.14);
+}
+
+.nav-left-row {
+  padding: 0 20px;
+  font-size: 13px;
+  line-height: 44px;
+  height: 44px;
+  color: rgba(0,0,0,0.87);
+  display: list-item;
+}
+.form-title {
+  color: rgba(0,0,0,0.87);
+}
+.form-input {
+  padding-bottom: 20px;
+}
+
+.btn-submit {
+  margin-bottom: 20px;
+}
+
+th, td{
+  border: 1px solid #000 !important;
+  padding: 10px 0px;
+  align-items: 'center';
+}

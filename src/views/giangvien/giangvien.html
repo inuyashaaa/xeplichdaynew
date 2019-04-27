@@ -1,0 +1,59 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row gv-container">
+    <form action="/giangvien" method="POST" class="col s12 card-panel form-input" id="form-add-gv"
+      data-number="{{numberOfTeacher}}">
+      <h5 class="form-title">Thông tin giảng viên</h5>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <input id="first_name" type="text" class="validate" name="name">
+          <label for="first_name">Họ Và Tên</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="note" type="text" class="validate" name="note">
+          <label for="note">Ghi chú</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light center btn-submit light-blue btn-form-gv " type="submit">Thêm Giảng
+        Viên
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12">
+        <table class="striped">
+          <thead class="table-head ">
+            <tr>
+              <th>STT</th>  
+              <th>Giảng Viên</th>
+              <th>Mã giảng viên</th>
+              <th>Ghi Chú</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody class="gv-table-body">
+            {% for teacher in listTeacher %}
+            <tr id="giangvien-{{teacher.id}}">
+              <td>{{ loop.index }}</td>
+              <td>{{ teacher.name }}</td>
+              <td>{{ teacher.id }}</td>
+              <td>{{ teacher.note }}</td>
+              <td>
+                <a href="/edit/giangvien/{{ teacher.id }}" class="waves-effect waves-light btn btn-small">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a href="/giangvien/{{ teacher.id }}"
+                  class="waves-effect waves-light btn btn-small red lighten-2 btn-delete-gv">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

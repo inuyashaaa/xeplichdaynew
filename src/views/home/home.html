@@ -1,0 +1,25 @@
+{% extends "layout/layout.html" %}
+
+{% block content %}
+<div class="row content-container">
+  <div class="col m2 nav-left hide-on-med-and-down">
+    <ul class="">
+      <a href="/giangvien" class="nav-left-row" id="btn-gv">Giảng Viên</a>
+      <a href="/monhoc" class="nav-left-row" id="btn-mh">Môn Học</a>
+      <a href="/lop" class="nav-left-row" id="btn-lop">Lớp</a>
+      <a href="/phanconggiangday" class="nav-left-row" id="btn-lop">Phân công giảng dạy</a>
+      <a href="/tkb/giangvien" class="nav-left-row" id="btn-lop">TKB Giảng Viên</a>
+      <a href="/tkb/lop" class="nav-left-row" id="btn-lop">TKB Lớp</a>
+    </ul>
+  </div>
+
+  <div class="col m10 s12">
+    {% block homeContent %}
+      <h4>Trường Đại học Sư Phạm Hà Nội - Khoa Công Nghệ Thông Tin</h4>
+      <img class="responsive-img" src="/images/IMG_1015.jpg">
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}{% block script %}
+<script src="/js/home.js"></script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "home/home.html" %}
+
+{% block homeContent %}
+<div class="row mh-container">
+    <form action="/monhoc" method="POST" class="col s12 card-panel form-input" id="form-add-mh"
+      data-number="{{numberOfSuject}}">
+      <h5 class="form-title">Thông tin môn học</h5>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <input id="mona" type="text" class="validate" name="name">
+          <label for="mona" >Tên môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="monb"type="text" class="validate" name="mamonhoc">
+          <label for="monb">Mã môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="sotinchi">
+            <option value="" disabled selected>Chọn số tín chỉ</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label>Số tín chỉ</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light center btn-submit light-blue " type="submit">Thêm Môn Học
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12">
+        <table class="striped">
+          <thead class="table-head ">
+            <tr>
+              <th>STT</th>
+              <th>Môn học</th>
+              <th>Mã môn học</th>
+              <th>Số tín chỉ</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody class="mh-table-body">
+            {% for subject in listSubject %}
+            <tr id="monhoc-{{subject.id}}">
+              <td>{{ loop.index }}</td>
+              <td>{{ subject.name }}</td>
+              <td>{{ subject.mamonhoc }}</td>
+              <td>{{ subject.sotinchi }}</td>
+              <td>
+                <a href="/edit/monhoc/{{ subject.id }}" class="waves-effect waves-light btn btn-small">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a href="/monhoc/{{ subject.id }}"
+                  class="waves-effect waves-light btn btn-small red lighten-2 btn-delete-mh">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

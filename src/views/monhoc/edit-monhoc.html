@@ -1,0 +1,38 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col m8 offset-m2 s12">
+    <form action="/edit/monhoc/{{dataEdit.id}}" method="POST" class="col s12 card-panel form-input">
+      <h5 class="form-title">Thông tin môn học</h5>
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <input id="tenmonhoc" type="text" class="validate" name="name" value="{{dataEdit.name}}">
+          <label for="tenmonhoc">Tên môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <input id="maaaaaaa" type="text" class="validate" name="mamonhoc" value="{{dataEdit.mamonhoc}}">
+          <label for="maaaaaaa">Mã môn học</label>
+        </div>
+        <div class="input-field col m6 s12">
+          <select name="sotinchi">
+            <option value="" disabled>Chọn số tín chỉ</option>
+            <option value="1" {% if dataEdit.sotinchi == 1 %} selected {% endif %}>1</option>
+            <option value="2" {% if dataEdit.sotinchi == 2 %} selected {% endif %}>2</option>
+            <option value="3" {% if dataEdit.sotinchi == 3 %} selected {% endif %}>3</option>
+            <option value="4" {% if dataEdit.sotinchi == 4 %} selected {% endif %}>4</option>
+            <option value="5" {% if dataEdit.sotinchi == 5 %} selected {% endif %}>5</option>
+          </select>
+          <label>Số tín chỉ</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light center btn-submit light-blue " type="submit">Cập nhật thông tin Môn Học
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+  <script src="/js/monhoc.js"></script>
+{% endblock %}
