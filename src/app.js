@@ -810,12 +810,17 @@ app.get('/tkb/laitao', async (req, res) => {
     } while (await kiemTraGiangBuocLaiTao() !== 1)
 
     // Lay phan tu tkb de lai tao
-    const layPhanTuDeTaoDotBien = await knex('xlaitao').select().first()
+    const layDanhSachPhanTuDeTaoDotBien = await knex('xlaitao').select()
 
-    console.log('================================================')
-    console.log('layPhanTuDeTaoDotBien', layPhanTuDeTaoDotBien)
-    console.log('================================================')
-    await taoTkbDotBien(JSON.stringify(layPhanTuDeTaoDotBien.value))
+    // Tao danh sach Promise phan tu dot bien
+    const listPromisePhanTuDotBien = []
+    for (let indexPhanTuDotBien = 0; indexPhanTuDotBien < layDanhSachPhanTuDeTaoDotBien.length / 2; indexPhanTuDotBien++) {
+      const phanTuDotBien = layDanhSachPhanTuDeTaoDotBien[indexPhanTuDotBien]
+      listPromisePhanTuDotBien.push(taoTkbDotBien(JSON.stringify(phanTuDotBien.value)))
+    }
+
+    // Thuc thi tao dot bien
+    await Promise.all(listPromisePhanTuDotBien)
 
     await kiemTraGiangBuocLaiTao()
     return res.json({ success: true })
